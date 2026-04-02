@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "PC Builder",
-  description: "Build your PC!",
+  description: "Create your PC config!",
 };
 
 export default function RootLayout({
