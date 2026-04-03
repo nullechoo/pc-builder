@@ -1,3 +1,4 @@
+import { Header } from "@/components/header";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
@@ -38,7 +39,10 @@ export default function RootLayout({
         "dark",
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-svh flex flex-col">
+        <Header />
+        {children}
+      </body>
     </html>
   );
 }
