@@ -1,5 +1,4 @@
-import type { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const PUBLIC_PATHS = new Set(["/", "/login", "/signup"]);
 

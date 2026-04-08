@@ -7,7 +7,7 @@ export async function Header() {
   const session = await auth();
 
   return (
-    <header className="container mx-auto flex items-center p-4">
+    <header className=" container mx-auto max-w-5xl mt-8 flex items-center py-4">
       <div className="shrink-0">
         <TypographyH3>
           <Link href={session?.user ? "/dashboard" : "/"}>PC Builder</Link>
