@@ -1,11 +1,11 @@
 "use client";
 
 import {
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
+  DialogContent,
+  DialogHeader,
+  DialogTitle
 } from "@/components/ui/dialog";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Component } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { getComponentsByCategory } from "../actions";
@@ -19,7 +19,7 @@ type Props = {
 
 export function AddComponentDialogContent({
   categoryId,
-  categotyName,
+  categotyName: categoryName,
   onSelect,
 }: Props) {
   const [components, setComponents] = useState<Component[]>([]);
@@ -35,13 +35,12 @@ export function AddComponentDialogContent({
   return (
     <DialogContent className="max-w-4xl w-[90vw] max-h-[85vh] overflow-hidden flex flex-col">
       <DialogHeader>
-        <DialogTitle>Add component - {categotyName}</DialogTitle>
+        <DialogTitle>Add component - {categoryName}</DialogTitle>
       </DialogHeader>
-      <DialogDescription className="overflow-y-auto flex-1 mx-1 px-1">
-        <>
-          {" "}
+      <ScrollArea className="h-120 rounded-md border">
+        <div className="p-4">
           {components.length > 0 ? (
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-3 grid-cols-2">
               {components.map((c) => (
                 <ComponentCard
                   key={c.id}
@@ -52,12 +51,12 @@ export function AddComponentDialogContent({
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground text-sm py-4">
+            <div className="text-muted-foreground text-sm py-4">
               {loading ? "Loading..." : "No components available"}
-            </p>
+            </div>
           )}
-        </>
-      </DialogDescription>
+        </div>
+      </ScrollArea>
     </DialogContent>
   );
 }

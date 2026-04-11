@@ -3,24 +3,25 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
+  Table,
+  TableBody,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from "@/components/ui/table";
 import { Component, ComponentCategory } from "@/lib/types";
 import {
-    Box,
-    Cpu,
-    Fan,
-    HardDrive,
-    MemoryStick,
-    Monitor,
-    Plus,
-    Server,
-    Zap,
+  Box,
+  Cpu,
+  Fan,
+  HardDrive,
+  MemoryStick,
+  Monitor,
+  Plus,
+  Server,
+  Zap,
 } from "lucide-react";
 import { useState } from "react";
 import { AddComponentDialogContent } from "./add-component-dialog";
@@ -74,47 +75,61 @@ export function TableParts({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {components.map((category) => {
-          const Icon = iconMap[category.icon];
-          const selected = selectedByCategory[category.id];
+        <>
+          {components.map((category) => {
+            const Icon = iconMap[category.icon];
+            const selected = selectedByCategory[category.id];
 
-          return (
-            <TableRow key={category.id} className="my-2">
-              <TableCell>
-                <div className="flex items-center">
-                  <Icon className="h-5 w-5 mr-1" />
-                </div>
-              </TableCell>
-              <TableCell className="font-bold">{category.name}</TableCell>
-              <TableCell>{selected?.name ?? "-"}</TableCell>
-              <TableCell>{selected?.price ?? "-"}</TableCell>
-              <TableCell className="text-right">
-                <Dialog
-                  open={openCategoryId === category.id}
-                  onOpenChange={(open) =>
-                    setOpenCategoryId(open ? category.id : null)
-                  }
-                >
-                  <DialogTrigger asChild>
-                    <Button variant="outline" size="sm">
-                      <Plus className="h-4 w-4 mr-1" />
-                      {selected ? "Change" : "Add"}
-                    </Button>
-                  </DialogTrigger>
-                  <AddComponentDialogContent
-                    categoryId={category.id}
-                    categotyName={category.name}
-                    onSelect={(c) => {
-                      onSelectedComponent(category.id, c);
-                      setOpenCategoryId(null);
-                    }}
-                  />
-                </Dialog>
-              </TableCell>
-            </TableRow>
-          );
-        })}
+            return (
+              <TableRow key={category.id} className="my-2">
+                <TableCell>
+                  <div className="flex items-center">
+                    <Icon className="h-5 w-5 mr-1" />
+                  </div>
+                </TableCell>
+                <TableCell className="font-bold">{category.name}</TableCell>
+                <TableCell>{selected?.name ?? "-"}</TableCell>
+                <TableCell>{selected?.price ?? "-"}</TableCell>
+                <TableCell className="text-right">
+                  <Dialog
+                    open={openCategoryId === category.id}
+                    onOpenChange={(open) =>
+                      setOpenCategoryId(open ? category.id : null)
+                    }
+                  >
+                    <DialogTrigger asChild>
+                      <Button variant="outline" size="sm">
+                        <Plus className="h-4 w-4 mr-1" />
+                        {selected ? "Change" : "Add"}
+                      </Button>
+                    </DialogTrigger>
+                    <AddComponentDialogContent
+                      categoryId={category.id}
+                      categotyName={category.name}
+                      onSelect={(c) => {
+                        onSelectedComponent(category.id, c);
+                        setOpenCategoryId(null);
+                      }}
+                    />
+                  </Dialog>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </>
       </TableBody>
+      {totalPrice > 0 && (
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={5}>
+              <span className="font-medium">Build price: </span>
+              <span className="font-large text-gray-500">
+                {new Intl.NumberFormat("ru-RU").format(totalPrice)}
+              </span>
+            </TableCell>
+          </TableRow>
+        </TableFooter>
+      )}
     </Table>
   );
 }

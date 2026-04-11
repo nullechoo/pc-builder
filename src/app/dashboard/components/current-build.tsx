@@ -5,6 +5,7 @@ import { TypographyH1 } from "@/components/ui/typography-h1";
 import { ComponentCategories } from "@/lib/constants";
 import { Component } from "@/lib/types";
 import { useCallback, useState } from "react";
+import { SaveBuildDialog } from "./save-build-dialog";
 import { TableParts } from "./table";
 
 export const CurrentBuild = () => {
@@ -30,6 +31,11 @@ export const CurrentBuild = () => {
         <TableParts
           components={ComponentCategories}
           onSelectedComponent={onSelectComponent}
+          selectedByCategory={selectedByCategory}
+        />
+        <SaveBuildDialog
+          open={saveDialogOpen}
+          onOpenChange={setSaveDialogOpen}
           selectedByCategory={selectedByCategory}
         />
       </div>
