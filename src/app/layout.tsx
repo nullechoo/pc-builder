@@ -2,6 +2,7 @@ import { Header } from "@/components/header";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -36,12 +37,13 @@ export default function RootLayout({
         geistMono.variable,
         "font-sans",
         inter.variable,
-        "dark",
+        "dark"
       )}
     >
       <body className="min-h-svh flex flex-col">
         <Header />
         {children}
+        <Toaster position="top-center" />
       </body>
     </html>
   );
