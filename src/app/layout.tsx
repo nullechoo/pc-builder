@@ -42,7 +42,7 @@ export default function RootLayout({
     >
       <body className="min-h-svh flex flex-col">
         <Header />
-        {children}
+        <div className="container mx-auto max-w-5xl mt-8">{children}</div>
         <Toaster position="top-center" />
       </body>
     </html>
