@@ -127,4 +127,7 @@
   html {
     @apply font-sans;
   }
+  .container {
+    @apply px-4;
+  }
 }

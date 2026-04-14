@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { TypographyH3 } from "@/components/ui/typography-h3";
 import { Pencil } from "lucide-react";
@@ -35,12 +35,12 @@ type Props = {
 export function BuildCard({ build, children }: Props) {
   return (
     <Card className="flex flex-col">
-      <CardHeader className="pb-2 flex flex-row items-start justify-between gap-2">
-        <div className="min-w-0 flex">
+      <CardHeader className="flex flex-row items-start justify-between gap-2">
+        <div className="min-w-0 flex flex-col gap-2 items-start">
           <CardTitle>
             <TypographyH3>{build.name}</TypographyH3>
           </CardTitle>
-          <p className="text-xs text-muted-foreground mt-1">
+          <p className="text-xs text-muted-foreground">
             Created by: {build?.user?.email?.trim()}
           </p>
         </div>
@@ -62,8 +62,8 @@ export function BuildCard({ build, children }: Props) {
           </ul>
         </CardContent>
       )}
-      <CardFooter className="flex flex-row justify-between gap-2 pt-4 border-t">
-        <CardDescription className="text-sm font-medium tabular-nums flex flex-col justify-between">
+      <CardFooter className="flex flex-row justify-between pt-4 border-t">
+        <CardDescription className="text-sm font-medium tabular-nums flex gap-2 flex-col justify-between">
           <span className="text-sky-500 text-lg font-bold">
             {new Intl.NumberFormat("ru-RU").format(build.totalPrice)}
           </span>

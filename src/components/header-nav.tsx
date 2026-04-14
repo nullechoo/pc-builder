@@ -8,6 +8,7 @@ import { Session } from "next-auth";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { TypographyH3 } from "./ui/typography-h3";
 
 type Props = {
   session: Session | null;
@@ -28,8 +29,10 @@ export function HeaderNav({ session }: Props) {
   }
 
   return (
-    <div className="grid grid-cols-3 items-center gap-4">
-      <div />
+    <nav className="flex md:items-center py-4 md:flex-row flex-col items-start justify-between gap-4">
+      <TypographyH3>
+        <Link href={session?.user ? "/dashboard" : "/"}>PC Builder</Link>
+      </TypographyH3>
       <div className="flex justify-center">
         <Tabs value={tabValue} className="w-fit">
           <TabsList>
@@ -64,6 +67,6 @@ export function HeaderNav({ session }: Props) {
           Logout
         </Button>
       </div>
-    </div>
+    </nav>
   );
 }
